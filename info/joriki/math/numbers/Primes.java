@@ -1,5 +1,6 @@
 package info.joriki.math.numbers;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -71,6 +72,47 @@ public class Primes {
         
         return factorization;
     }
+
+    // no initialization – caller must initialize with sufficient primes
+    public static Map<Integer,Integer> primeFactorization (BigInteger n) {
+        if (n.signum() == 0)
+            throw new IllegalArgumentException();
+
+        Map<Integer,Integer> factorization = new HashMap<>();
+        int count;
+
+        count = 0;
+        while (!n.testBit(0)) {
+            count++;
+            n = n.shiftRight(1);
+        }
+
+        if (count > 0)
+            factorization.put(2,count);
+
+        for (int k = 3;;k += 2) {
+            if (k < 0)
+                throw new Error("prime overflow");
+            BigInteger bigK = BigInteger.valueOf(k);
+            if (bigK.multiply(bigK).compareTo(n) > 0)
+                break;
+
+            if (prime [k >> 1]) {
+                count = 0;
+                while (n.remainder(bigK).signum() == 0) {
+                    count++;
+                    n = n.divide(bigK);
+                }
+                if (count > 0)
+                    factorization.put(k, count);
+            }
+        }
+
+        if (n.compareTo(BigInteger.ONE) > 0)
+            factorization.put(n.intValueExact(),1);
+
+        return factorization;
+    }
     
     public static List<Integer> primeFactors (long n) {
         initialize(n);
@@ -101,6 +143,44 @@ public class Primes {
         return factors;
     }
     
+    public static List<Integer> distinctPrimeFactors (long n) {
+        initialize(n);
+
+        List<Integer> factors = new ArrayList<>();
+
+        if ((n & 1) == 0) {
+            factors.add(2);
+            do
+                n >>= 1;
+            while ((n & 1) == 0);
+        }
+
+        for (int k = 3;k * (long) k <= n;k += 2) {
+            if (k < 0)
+                throw new Error("prime overflow");
+            if (prime [k >> 1]) {
+                if (n % k == 0) {
+                    factors.add(k);
+                    do
+                        n /= k;
+                    while (n % k == 0);
+                }
+            }
+        }
+
+        if (n > Integer.MAX_VALUE)
+            throw new Error();
+
+        if (n > 1)
+            factors.add((int) n);
+
+        return factors;
+    }
+
+    public static boolean isPrime(int p) {
+        return p == 2 || ((p & 1) == 1 && prime [p >> 1]);
+    }
+
     public static Stream<Integer> stream() {
         return Stream.generate(new Supplier<Integer>() {
             boolean first = true;

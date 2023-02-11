@@ -6,8 +6,8 @@ public class BigRational implements Comparable<BigRational> {
 	public static BigRational ZERO = new BigRational (0);
 	public static BigRational ONE  = new BigRational (1);
 	
-	BigInteger num;
-	BigInteger den;
+	public BigInteger num;
+	public BigInteger den;
 	
 	public BigRational(long n) {
 	    this (BigInteger.valueOf(n));
