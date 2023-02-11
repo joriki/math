@@ -23,7 +23,7 @@ public class Primes {
         Arrays.fill (prime,true);
         prime [0] = false;
 
-        // fins primes using simple sieve of Eratosthenes
+        // find primes using simple sieve of Eratosthenes
         int limit = (int) Math.sqrt (max); // highest factor to test
         for (int p = 3;p <= limit;p += 2)  // loop over odd integers
             if (prime [p >> 1])            // only test primes p
@@ -73,7 +73,6 @@ public class Primes {
     }
     
     public static List<Integer> primeFactors (long n) {
-
         initialize(n);
         
         List<Integer> factors = new ArrayList<>();

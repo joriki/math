@@ -33,9 +33,13 @@ public class BigRational implements Comparable<BigRational> {
 			this.num = this.num.negate ();
 		}
 	}
+
+    public String toFractionString () {
+        return num + "/" + den;
+    }
 	
 	public String toString () {
-		return num + "/" + den;
+		return toFractionString () + " : " + doubleValue();
 	}
 	
 	public boolean equals (Object o) {
