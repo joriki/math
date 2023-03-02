@@ -20,7 +20,7 @@ public class Question4643975 {
     static Map<BitSet,BigInteger> evenMap;
     static Map<BitSet,BigInteger> oddMap;
     
-    static BigInteger modulo;
+    static BigInteger modulus;
     
     public static void main(String [] args) {
         Primes.initialize(10000);
@@ -33,29 +33,29 @@ public class Question4643975 {
             residues = new BigInteger [half];
             for (int i = 0;i < half;i++)
                 binomials [i] = Binomials.binomial(n - 1, i);
-            modulo = BigInteger.ONE;
+            modulus = BigInteger.ONE;
             even = Set.of(new BitSet());
             odd = Set.of(new BitSet());
             int max = 0;
             int p;
             for (p = n - 2;p + p > n;p -= 2)
                 if (Primes.isPrime(p)) {
-                    modulo = modulo.multiply(BigInteger.valueOf(p));
+                    modulus = modulus.multiply(BigInteger.valueOf(p));
                     for (int i = 0;i < half;i++)
-                        residues [i] = binomials [i].remainder(modulo);
+                        residues [i] = binomials [i].remainder(modulus);
                     recurse (max,n - p,false);
                     max = n - p;
                 }
             recurse (max,n >> 1,true);
             for (;p > 1;p -= 2)
                 if (Primes.isPrime(p)) {
-                    modulo = modulo.multiply(BigInteger.valueOf(p));
+                    modulus = modulus.multiply(BigInteger.valueOf(p));
                     for (int i = 0;i < half;i++)
-                        residues [i] = binomials [i].remainder(modulo);
+                        residues [i] = binomials [i].remainder(modulus);
                     recurse (max,max,false);
                 }
             residues = binomials;
-            modulo = null;
+            modulus = null;
             Set<BigInteger> lastIntersection = recurse (max,max,false);
             System.out.println(n + " : " + lastIntersection.size() + " : " + lastIntersection);
             System.out.println(even);
@@ -91,9 +91,9 @@ public class Question4643975 {
     }
     
     static void recurse (int max,int newMax,BitSet bits,BigInteger sum,boolean last,int parity) {
-        if (modulo != null)
-            while (sum.compareTo(modulo) >= 0)
-                sum = sum.subtract(modulo);
+        if (modulus != null)
+            while (sum.compareTo(modulus) >= 0)
+                sum = sum.subtract(modulus);
         
         boolean single = last && max + parity == newMax;
         if (max + parity >= newMax && !single)
