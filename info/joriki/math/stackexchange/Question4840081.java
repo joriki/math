@@ -31,7 +31,7 @@ public class Question4840081 {
             }
             String num = Long.toString(min.num.longValueExact(),b);
             String den = Long.toString(min.den.longValueExact(),b);
-            System.out.println(den + "_" + b + "x + " + den + "_" + b + "x^n&=&" + num + "_" + b + "\\\\");
+            System.out.println(den + "_" + b + "x + x^n&=&" + num + "_" + b + "\\\\");
         }
     }
 }
