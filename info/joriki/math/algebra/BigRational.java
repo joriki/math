@@ -46,6 +46,10 @@ public class BigRational implements Comparable<BigRational> {
 		BigRational r = (BigRational) o;
 		return r.num.equals (num) && r.den.equals (den);
 	}
+
+	public int hashCode () {
+	    return (31 * num.hashCode()) ^ den.hashCode();
+	}
 	
 	public static BigRational sum (BigRational r1,BigRational r2) {
 		return new BigRational (r1.num.multiply (r2.den).add (r1.den.multiply (r2.num)),r1.den.multiply (r2.den));
