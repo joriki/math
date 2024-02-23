@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import javax.imageio.ImageIO;
 
@@ -232,9 +233,7 @@ public class Question4867338 {
                   }
               });
 
-              for (double [] p : polygon)
-                  System.out.print ("$(" + p [0] + "," + (1 - p [1]) + ")$, ");
-              System.out.println ();
+              System.out.println(Arrays.stream (polygon).map (p -> "$(" + p [0] + "," + (1 - p [1]) + ")$").collect(Collectors.joining(", ")));
 
               for (int i = 0;i < 3;i++)
                   System.out.println (square (triangle [i],triangle [(i + 1) % 3]));
