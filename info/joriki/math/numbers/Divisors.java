@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+import java.util.stream.Stream;
 
 import info.joriki.util.ListBuilder;
 
@@ -53,7 +56,27 @@ public class Divisors {
         }
     }
 
-    public static long gcd(long a,long b) {
-        return BigInteger.valueOf(a).gcd(BigInteger.valueOf(b)).longValue();
+    public static long gcd (long a,long b) {
+        return BigInteger.valueOf (a).gcd (BigInteger.valueOf (b)).longValueExact ();
+    }
+
+    public static long gcd (long ... a) {
+        return gcd (LongStream.of (a).mapToObj (l -> BigInteger.valueOf (l)).toArray (BigInteger []::new)).longValueExact ();
+    }
+
+    public static BigInteger gcd (BigInteger ... i) {
+        return Stream.of (i).reduce ((a,b) -> a.gcd (b)).orElse (BigInteger.ZERO);
+    }
+
+    public static long lcm (long a,long b) {
+        return a * (b / gcd (a,b));
+    }
+
+    public static int lcm (int ... l) {
+        return IntStream.of (l).reduce ((a,b) -> (int) lcm (a,b)).orElse (1);
+    }
+
+    public static long lcm (long ... l) {
+        return LongStream.of (l).reduce ((a,b) -> lcm (a,b)).orElse (1);
     }
 }
