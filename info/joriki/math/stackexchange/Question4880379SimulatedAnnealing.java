@@ -12,12 +12,12 @@ public class Question4880379SimulatedAnnealing {
     final static int m = 17;
 
     final static double betastep = 0.0001;
-    final static double betamax = 0.001;
+    final static double betamax = 0.002;
     final static double discount = 0.01;
 
     final static int target = Binomials.factorial (n).intValueExact ();
 
-    final static Random random = new Random (243);
+    final static Random random = new Random (3);
 
     static int [] [] swaps = new int [m] [2];
 
