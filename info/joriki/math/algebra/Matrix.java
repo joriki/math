@@ -39,6 +39,12 @@ public class Matrix<T> {
 		matrix [i] [i] = one;
 	}
 	
+	public static <T> Matrix<T> getIdentity (Ring<T> ring,int n) {
+	    Matrix<T> identity = new Matrix<> (ring,n,n);
+	    identity.identity ();
+	    return identity;
+	}
+
 	public T get (int i,int j) {
 		return (T) matrix [i] [j];
 	}
