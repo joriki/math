@@ -16,7 +16,7 @@ public class Question2463859 {
     public static void main (String [] args) {
         for (int i = 0;i < 100;i++) {
             double x = Math.random () * Math.exp (200 * Math.random () - 100);
-            System.out.println(Math.log (x) + " / " + fastLog (x));
+            System.out.println (Math.log (x) + " / " + fastLog (x));
         }
     }
 
