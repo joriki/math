@@ -34,6 +34,6 @@ public class Question4882983Simulation {
         }
 
         for (long c : counts)
-            System.out.println(c / (double) ntrials);
+            System.out.println (c / (double) ntrials);
     }
 }

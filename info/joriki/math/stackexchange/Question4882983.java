@@ -62,6 +62,6 @@ public class Question4882983 {
         identity.add (BigRational.ONE.negate (),t);
         Matrix<BigRational> a = parseMatrix (absorptions,6);
         identity.solveFor (a);
-        System.out.println(Matrix.product (parseMatrix (initial,1),a));
+        System.out.println (Matrix.product (parseMatrix (initial,1),a));
     }
 }
