@@ -2,11 +2,12 @@ package info.joriki.math.stackexchange;
 
 import java.awt.Point;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Question1469342Simulation {
     final static int dim = 8;
     final static long ntrials = 10000000;
-    final static Random random = new Random();
+    final static Random random = ThreadLocalRandom.current ();
     
     public static void main(String [] args) {
         long total = 0;

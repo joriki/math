@@ -1,10 +1,11 @@
 package info.joriki.math.stackexchange;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Question4607242 {
     final static int ntrials = 100000000;
-    final static Random random = new Random ();
+    final static Random random = ThreadLocalRandom.current ();
 
     final static int [] [] dice = {
             {2,2,4,4,1,0,7},
