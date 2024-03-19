@@ -1,11 +1,11 @@
 package info.joriki.math.stackexchange;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 public class Question3652964 {
     final static int ntrials = 100000000;
-    final static Random random = ThreadLocalRandom.current ();
+    final static RandomGenerator random = ThreadLocalRandom.current ();
 
     public static void main(String [] args) {
         long last = 0;

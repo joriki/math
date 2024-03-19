@@ -1,12 +1,12 @@
 package info.joriki.math.stackexchange;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 public class Question4882983Simulation {
     final static long ntrials = 100000000000L;
 
-    final static Random random = ThreadLocalRandom.current();
+    final static RandomGenerator random = ThreadLocalRandom.current();
 
     public static void main (String [] args) {
         long [] counts = new long [4];
