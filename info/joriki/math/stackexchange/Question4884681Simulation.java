@@ -1,7 +1,7 @@
 package info.joriki.math.stackexchange;
 
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 public class Question4884681Simulation {
     final static int nevents = 54;
@@ -16,9 +16,10 @@ public class Question4884681Simulation {
         }
     }
 
-    final static RandomGenerator random = ThreadLocalRandom.current ();
+    static RandomGenerator random = RandomGeneratorFactory.of("L64X1024MixRandom").create ();
 
     public static void main (String [] args) {
+
         long count = 0;
 
         int [] events = new int [nevents];
@@ -28,7 +29,7 @@ public class Question4884681Simulation {
             if ((n % 1000000) == 0)
                 System.out.println (n + " : " + count / (double) n);
             for (int i = 0;i < nevents;i++)
-                events [i] = mins [i] + random.nextInt (mins [i],lims [i]);
+                events [i] = random.nextInt (mins [i],lims [i]);
             for (int period = 2;3 * period <= nevents;period++) {
                 inner:
                 for (int start = 0;start + 3 * period <= nevents;start++) {
