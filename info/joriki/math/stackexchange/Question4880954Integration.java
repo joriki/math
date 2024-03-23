@@ -71,25 +71,26 @@ public class Question4880954Integration {
                 }
 
             // now sum them over all triangles with the quadrature weights
-            double [] isum = new double [2];
+            double [] isum = new double [3];
             for (int i = 0;i < n;i++) {
-                double [] jsum = new double [2];
+                double [] jsum = new double [3];
                 for (int j = 0;j < n;j++) {
-                    double [] ksum = new double [2];
+                    double [] ksum = new double [3];
                     for (int k = 0;k < n;k++) {
                         // each triangle consists of three triangles with one vertex at the origin
                         // if the triangle doesn’t contain the origin, the contributions have different signs
-                        double v = p [0] [i] [j] + p [1] [j] [k] + p [2] [k] [i];
-                        ksum [0] += q.weights [k] * v * v;
-                        ksum [1] += q.weights [k] * Math.abs (v);
+                        double v = Math.abs (p [0] [i] [j] + p [1] [j] [k] + p [2] [k] [i]);
+                        ksum [0] += q.weights [k] * v;
+                        ksum [1] += q.weights [k] * v * v;
+                        ksum [2] += q.weights [k] * v * v * v;
                     }
-                    for (int l = 0;l < 2;l++)
+                    for (int l = 0;l < 3;l++)
                         jsum [l] += q.weights [j] * ksum [l];
                 }
-                for (int l = 0;l < 2;l++)
+                for (int l = 0;l < 3;l++)
                     isum [l] += q.weights [i] * jsum [l];
             }
-            System.out.println(isum [1] + " " + isum [0]);
+            System.out.println(isum [0] + " " + isum [1] + " " + isum [2]);
         }
     }
 
