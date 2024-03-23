@@ -52,11 +52,11 @@ public class Question4880954Simulation {
                         inverse [j0] [i0] = (triple [i1] [j1] * triple [i2] [j2] - triple [i2] [j1] * triple [i1] [j2]) / determinant;
 
                 // express the two points as linear combinations of the triple
-                for (point = 0;point < 2;point++) {
+                for (double [] p : points) {
                     for (int i = 0;i < 3;i++) {
                         double sum = 0;
                         for (int j = 0;j < 3;j++)
-                            sum += inverse [j] [i] * points [point] [j];
+                            sum += inverse [j] [i] * p [j];
                         // a negative coordinate means this point lies outside the convex hull of the triple
                         if (sum < 0)
                             continue inner;
